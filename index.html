@@ -103,8 +103,13 @@
     </header>
 
     <div id="search">
-        <input type="text" placeholder="Search by product name">
-        <button>Search</button>
+        <input type="text" id="searchInput" placeholder="Search by product name">
+        <button onclick="searchProduct()">Search</button>
+    </div>
+  </div>
+
+    <div id="search-result">
+        <!-- Display search result here -->
     </div>
 
     <div id="products">
@@ -150,6 +155,27 @@
             <p></p>
         </div>
     </div>
+        <script>
+        function searchProduct() {
+            var searchTerm = document.getElementById('searchInput').value.toLowerCase();
+            var productBoxes = document.querySelectorAll('.product-box');
+
+            for (var i = 0; i < productBoxes.length; i++) {
+                var productName = productBoxes[i].querySelector('.product-name').innerText.toLowerCase();
+
+                if (productName.includes(searchTerm)) {
+                    productBoxes[i].classList.add('highlight');
+                    document.getElementById('search-result').innerHTML = productBoxes[i].outerHTML;
+                    document.getElementById('search-result').style.display = 'block';
+                    return; // Stop further checking once a match is found
+                }
+            }
+
+            // If no match is found
+            document.getElementById('search-result').innerHTML = '<p>No matching product found.</p>';
+            document.getElementById('search-result').style.display = 'block';
+        }
+        </script>
 <footer>
         &copy; 2024 Healthy Care
     </footer>
