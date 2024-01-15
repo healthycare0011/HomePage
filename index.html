@@ -12,55 +12,70 @@
             padding: 0;
             background-color: #fff;
         }
-        
-  
-    #menu-button {
-      position: fixed;
-      top: 13px;
-      right: 1px;
-      background-color: #333;
-      color: white;
-      padding: 10px 20px;
-      border: none;
-      border-radius: 5px;
-      cursor: pointer;
-      font-size: 16px;
-      transition: background-color 0.3s;
-    }
-
-    #menu-button:hover {
-      background-color: #555;
-    }
-
-    #menu-content {
-      display: none;
-      position: fixed;
-      top: 50px;
-      right: 0px;
-      background-color: #F5F5DC;
-      box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-      border-radius: 5px;
-      padding: 5px;
-      z-index: 1;
-    }
-
-    #menu-content a {
-      display: block;
-      padding: 15px;
-      text-decoration: none;
-      color: #333;
-      transition: background-color 0.3s;
-    }
-
-    #menu-content a:hover {
-      background-color: #f0f0f0;
-    }
-
-        header {
+          header {
             background-color: #8cc084;
-            padding: 10px;
             text-align: center;
+            padding: 10px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
             color: #fff;
+        }
+  #menu {
+            margin-right: 20px;
+            position: relative;
+            text-align:
+        }
+
+        #menu-btn {
+            background-color: transparent;
+            border: none;
+            cursor: pointer;
+            font-size: 20px;
+            color: #fff;
+        }
+
+        #menu-icon {
+            width: 30px;
+            height: 3px;
+            background-color: #fff;
+            margin: 6px 0;
+            transition: 0.4s;
+        }
+
+        #menu-options {
+            display: none;
+            position: absolute;
+            top: 30px;
+            right: 0;
+            background-color: #F5F5DC;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            border-radius: 5px;
+            padding: 10px;
+           
+        }
+
+        #menu-options a {
+            display: block;
+            padding: 10px;
+            text-decoration: none;
+            color: #333;
+        }
+
+        #menu-options a:hover {
+            background-color: #f2f2f2;
+        }
+
+        #menu-btn.open #menu-icon {
+            transform: rotate(-45deg);
+        }
+
+        #menu-btn.open #menu-icon:nth-child(2) {
+            opacity: 0;
+        }
+
+        #menu-btn.open #menu-icon:nth-child(3) {
+            transform: rotate(45deg);
         }
 
         #search {
@@ -171,15 +186,20 @@
     </style>
 </head>
 <body>
-<button id="menu-button" onclick="toggleMenu()">Menu</button>
-
-  <div id="menu-content">
-    <a href="https://healthycare0011.github.io/homepage/">Home</a>
-    <a href="https://www.facebook.com/profile.php?id=61554840383043">Facebook Page</a>
-    <a href="https://wa.me/1776762354">Whatsapp </a>
-  </div>
-    <header>
+<header>
         <h1>Healthy Care</h1>
+    <div id="menu">
+            <button id="menu-btn" onclick="toggleMenu()">
+                <div id="menu-icon"></div>
+                <div id="menu-icon"></div>
+                <div id="menu-icon"></div>
+            </button>
+            <div id="menu-options">
+                <a href="https://healthycare0011.github.io/homepage/">Home</a>
+                <a href="https://www.facebook.com/profile.php?id=61554840383043">Facebook Page</a>
+                <a href="https://wa.me/1776762354">Whatsapp</a>
+            </div>
+        </div>
     </header>
 
     <div id="search">
@@ -235,12 +255,14 @@
             <p></p>
         </div>
     </div>
-        <script>
-    function toggleMenu() {
-      var menuContent = document.getElementById('menu-content');
-      menuContent.style.display = (menuContent.style.display === 'block') ? 'none' : 'block';
-    }
-        </script>
+         <script>
+        function toggleMenu() {
+            var menuBtn = document.getElementById('menu-btn');
+            menuBtn.classList.toggle('open');
+            var menuOptions = document.getElementById('menu-options');
+            menuOptions.style.display = (menuOptions.style.display === 'block') ? 'none' : 'block';
+        }
+    </script>
         <script>
         function searchProduct() {
             var searchTerm = document.getElementById('searchInput').value.toLowerCase();
@@ -269,4 +291,4 @@
         <img src="/storage/emulated/0/DCIM/Restored/PikPng.com_healthy-png_1412125.png" alt="Messenger Logo">
         </a>
 </body>
-</html>
+    </html>
